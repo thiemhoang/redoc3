@@ -27,7 +27,7 @@ paths:
     get:
       tags:
         - Default
-      summary: Get Client Balance - v1
+      summary: GetClientBalancev1
       description: Returns current client balance.
       operationId: Client_Balance_V1_Get
       consumes: []
