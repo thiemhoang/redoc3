@@ -30,6 +30,7 @@
 	"Authentication": "Authentication",
     "Fixtures": "Fixtures",
     "Default": "Default",
-    "Get Client Balance - v1": "Get Client Balance - v1"
+    "Get Client Balance - v1": "Get Client Balance - v1",
+    "GetClientBalancev1": "Get Client Balance - v1"
 
 }
