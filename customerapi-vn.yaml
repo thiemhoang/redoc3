@@ -1,0 +1,177 @@
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Pinnacle - Customer API Reference Tiếng việt
+  description:  |
+    
+    # Authentication 
+    
+    API uses HTTP Basic access authentication.You need to send Authorization HTTP Request header Tiếng việt: 
+    
+    `Authorization: Basic <Base64 value of UTF-8 encoded "username:password">`
+    
+    Example:
+    
+    `Authorization: Basic U03MyOT23YbzMDc6d3c3O1DQ1`
+    
+  x-logo:
+    url: 'https://avatars2.githubusercontent.com/u/31601407?s=400&u=f3c6e1cfc8a26665e4a4df6d8da4a7ee527aeceb&v=4'
+host: api.pinnacle.com
+schemes:
+  - https
+security:
+  - basicAuth: []
+paths:
+  /v1/client/balance:
+    get:
+      tags:
+        - Default
+      summary: Get Client Balance - v1
+      description: Returns current client balance. Tiếng việt
+      operationId: Client_Balance_V1_Get
+      consumes: []
+      produces:
+        - application/json
+        - text/json
+        - application/xml
+        - text/xml
+      responses:
+        '200':
+          description: OK Tiếng việt
+          schema:
+            $ref: '#/definitions/ClientBalanceResponse'
+        '400':
+          description: BadRequest Tiếng việt
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized Tiếng việt
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden Tiếng việt
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: InternalServerError Tiếng việt
+          schema:
+            $ref: '#/definitions/ExtendedErrorResponse'
+      deprecated: false
+  /v1/translations:
+    get:
+      tags:
+        - Default
+      summary: Get Translations - v1
+      description: Returns translations for strings in base texts array. Each string in parameters must be URL encoded and separated with '|' character. Parameters are not case-sensitive. Tiếng việt
+      operationId: Translations_V1_Get
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - name: cultureCodes
+          in: query
+          description: Must be in Language Culture Name format. Tiếng việt
+          required: true
+          type: string
+        - name: baseTexts
+          in: query
+          description: Array of strings to be translated. Tiếng việt
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK Tiếng việt
+          schema:
+            $ref: '#/definitions/TranslationResponse'
+        '400':
+          description: BadRequest Tiếng việt
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized Tiếng việt
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden Tiếng việt
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: InternalServerError Tiếng việt
+          schema:
+            $ref: '#/definitions/ExtendedErrorResponse'
+securityDefinitions:
+  basicAuth:
+    type: basic
+definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      code:
+        type: string
+        description: Identifier representing the the type of error that occurred. Tiếng việt
+      message:
+        type: string
+        description: Description of the the error. Tiếng việt
+    description: Contains details of an error that was encountered. Tiếng việt
+  ExtendedErrorResponse:
+    type: object
+    properties:
+      ref:
+        type: string
+      code:
+        type: string
+      message:
+        type: string
+  ClientBalanceResponse:
+    description: Client Balance Details Tiếng việt
+    type: object
+    properties:
+      availableBalance:
+        format: double
+        description: Amount available for betting. Tiếng việt
+        type: number
+      outstandingTransactions:
+        format: double
+        description: Sum of not yet settled bet amounts. Tiếng việt
+        type: number
+      givenCredit:
+        format: double
+        description: Client’s credit. Tiếng việt
+        type: number
+      currency:
+        description: Client’s currency code. Tiếng việt
+        type: string
+    required: 
+      - availableBalance
+      - outstandingTransactions
+      - givenCredit
+      - currency
+  TranslationResponse:
+    type: object
+    properties:
+      translations:
+        type: array
+        description: Collection of translations. Tiếng việt
+        items:
+          $ref: '#/definitions/Translation'
+  Translation:
+    type: object
+    properties:
+      text:
+        type: string
+        description: Original requested text to be translated. Tiếng việt
+      cultures:
+        type: array
+        description: Collection of translations by culture. Tiếng việt
+        items:
+          $ref: '#/definitions/TranslationByCulture'
+  TranslationByCulture:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Culture based on which the text is translated. Tiếng việt
+      text:
+        type: string
+        description: Translation text. Tiếng việt
