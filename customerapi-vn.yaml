@@ -28,7 +28,7 @@ paths:
       tags:
         - Default
       summary: Get Client Balance - v1
-      description: Returns current client ផលិតផល balance. Tiếng việt
+      description: Returns current client スポーツ balance. Tiếng việt
       operationId: Client_Balance_V1_Get
       consumes: []
       produces:
