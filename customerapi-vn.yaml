@@ -71,7 +71,7 @@ paths:
       parameters:
         - name: cultureCodes
           in: query
-          description: Must be in Language Culture Name format. Tiếng việt
+          description: お気に入りに追加するには、イベントまたはリーグの隣の星印のアイコンをクリックしてください
           required: true
           type: string
         - name: baseTexts
